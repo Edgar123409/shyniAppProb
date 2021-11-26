@@ -276,7 +276,7 @@ ui <- dashboardPage(
                 h2("Esperanza y Varianza de variables aleatorias continuas"),
                 fluidRow(
                   box(title = "Entradas", status = "warning", solidHeader = TRUE,
-                      textInput("funcn", "Ingresa tu funcion de probabilidad ", "function(x) x*(3/2*(1-x^2))"),
+                      textInput("funcn", "Ingresa tu funcion de probabilidad ", "x^2"),
                       textInput("inferior", "Ingresa el indice inferior", "0"),
                       textInput("superior", "Ingresa el indice superior", "1")
                   ),
@@ -285,12 +285,21 @@ ui <- dashboardPage(
                     HTML("<strong>Resultado:</strong>"),
                     tags$div(style= "text-aling: center", textOutput("esperanza2"))
                   ),
+                ),
+                
+                fluidRow(
+                  box(title = "Entradas", status = "warning", solidHeader = TRUE,
+                      textInput("funcn2", "Ingresa tu funcion de probabilidad ", "(1 - .33)^2 * 2*x"),
+                      textInput("inferior", "Ingresa el indice inferior", "0"),
+                      textInput("superior", "Ingresa el indice superior", "1")
+                  ),
+                  
                   box(
                     title = "Varianza",status = "primary", solidHeader = TRUE,
                     HTML("<strong>Resultado:</strong>"),
                     tags$div(style= "text-aling: center", textOutput("varianza2"))
                   )
-                ),
+                )
               
         ), 
         
@@ -475,14 +484,18 @@ service <- function(input, output) {
     
     output$esperanza2 <- renderPrint({
       
-      f <- function(x) x*(3/2*(1-x^2))
+      body <- input$funcn
+      
+      eval(parse(text = paste('f <- function(x) { return(' , body , ')}', sep='')))
       
       integrate(f, lower = 0, upper = 1)
     })
     
-    output$varianza2 <- renderPrint({   
+    output$varianza2 <- renderPrint({
       
-      f <- function(x) (x-2/3)^2 *(2*x)
+      body <- input$funcn2
+      
+      funcion <- eval(parse(text = paste('f <- function(x) { return(' , body , ')}', sep='')))
       
       integrate(f, lower = 0, upper = 1)
       
