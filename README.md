@@ -1,4 +1,4 @@
 # shyniAppProb
 
-Dashboard Distribution Probabiliy
+Probability Distribution Dashboard
 
