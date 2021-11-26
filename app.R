@@ -38,15 +38,16 @@ ui <- dashboardPage(
                  menuItem("Distribuciones Continuas", tabName = "u2",
                       menuSubItem("Distribucion de Pareto", tabName = "dparet"),
                       menuSubItem("Distribucion de Frechet", tabName = "dfrech"),
-                      menuSubItem("Distribución Gamma", tabName = "dgama"))),
+                      menuSubItem("DistribuciÃ³n Gamma", tabName = "dgama"))),
         
         menuItem("Section 2", tabName = "p2", icon=icon("book"),
                  menuItem("Esperanza y Varianza", tabName = "esperanza", 
                           menuSubItem("Variables Continuas", tabName = "vADiscEsp"), 
                           menuSubItem("Variables Discretas", tabName = "vAContEsp")),
                  menuItem("Funcion generadora", tabName = "fgenerad",
-                          menuSubItem("Binomial"),
-                          menuSubItem("Geometrica"))
+                          menuSubItem("Binomial", tabName = "binomFge"),
+                          menuSubItem("Geometrica", tabName = "geomFge"), 
+                          menuSubItem("Pareto", tabName = "paretFg"))
                  )
       
     )),
@@ -54,20 +55,20 @@ ui <- dashboardPage(
       tabItems(
         
         tabItem(tabName = "presentacion",
-                #------------------------PRESENTACIÃN-----------------------------------
+                #------------------------PRESENTACIÃÂN-----------------------------------
                 HTML('<br><br><center><img  style = width:150px src="LogoITT.png"></center><br>'),
-                h4(strong("Instituto Tecnológico de Tlaxcala"),align = "center",tags$br(),tags$br()),
+                h4(strong("Instituto TecnolÃ³gico de Tlaxcala"),align = "center",tags$br(),tags$br()),
                 h1(strong("Probabilidad"),align = "center", style = "font-size:40px"),
                 h4(strong("Edgar Montiel"),align = "center",tags$br(),tags$br(),tags$br())
                 #-----------------------------------------------------------------------
         ),
         
         tabItem(tabName = "dbinom",
-                h2("Distribución Binomial"),
+                h2("DistribuciÃ³n Binomial"),
                 
-                p("La distribución binomial es una distribución de probabilidad discreta que cuenta el
-                  número de éxitos en una secuenca de n ensayos independientes entre sí con una probabilidad
-                  fija p de ocurrencia de éxito entre los ensayos."),
+                p("La distribuciÃ³n binomial es una distribuciÃ³n de probabilidad discreta que cuenta el
+                  nÃºmero de Ã©xitos en una secuenca de n ensayos independientes entre sÃ­ con una probabilidad
+                  fija p de ocurrencia de Ã©xito entre los ensayos."),
                 
                 fluidRow(
                   box(title = "Entradas", status = "warning", solidHeader = TRUE,
@@ -91,12 +92,12 @@ ui <- dashboardPage(
         ),
         
         tabItem(tabName = "dgeom",
-          h2("Distribución Geométrica"),
+          h2("DistribuciÃ³n GeomÃ©trica"),
           
-          p("Tambien conocida como distribución de Pascal, la distribución geométrica es un modelo adecuacuado
-            para los procesos en los que se repiten pruebas hasta la consecución del éxito a resultado deseado. 
-            El proceso consta de un número no definido de pruebas o experimentos separados y dicho proceso
-            fianlizará cuando se obtenga por primera vez el resultado deseado", align = "justify"),
+          p("Tambien conocida como distribuciÃ³n de Pascal, la distribuciÃ³n geomÃ©trica es un modelo adecuacuado
+            para los procesos en los que se repiten pruebas hasta la consecuciÃ³n del Ã©xito a resultado deseado. 
+            El proceso consta de un nÃºmero no definido de pruebas o experimentos separados y dicho proceso
+            fianlizarÃ¡ cuando se obtenga por primera vez el resultado deseado", align = "justify"),
                 
             fluidRow(
               box(title = "Entradas", status = "warning", solidHeader = TRUE,
@@ -106,7 +107,7 @@ ui <- dashboardPage(
                   max = 1,
                   value = 0.5),
                   sliderInput("n",
-                  "Número de intentos n:",
+                  "NÃºmero de intentos n:",
                   min = 1,
                   max = 40,
                   step = 1,
@@ -124,12 +125,12 @@ ui <- dashboardPage(
         tabItem(tabName = "dbinomN", solidHeader = TRUE,
                 
                 
-                h2("Distribución Binomial Negativa"),
+                h2("DistribuciÃ³n Binomial Negativa"),
                 
-                p("La Distribución Binomial Negativa es una distribución de probabilidad discreta 
-                  que incluye a la distribución de Pascal. Es una ampliación de las distribuciones 
-                  geométricas, utilizada en procesos en los cuales se ve necesaria la repetición de
-                  ensayos hasta conseguir un número de casos favorables (primer éxito).",align = "justify"),
+                p("La DistribuciÃ³n Binomial Negativa es una distribuciÃ³n de probabilidad discreta 
+                  que incluye a la distribuciÃ³n de Pascal. Es una ampliaciÃ³n de las distribuciones 
+                  geomÃ©tricas, utilizada en procesos en los cuales se ve necesaria la repeticiÃ³n de
+                  ensayos hasta conseguir un nÃºmero de casos favorables (primer Ã©xito).",align = "justify"),
                 
                 
                 fluidRow(
@@ -140,7 +141,7 @@ ui <- dashboardPage(
                                   max = 1,
                                   value = 0.5),
                       sliderInput("n1",
-                                  "Número de intentos n:",
+                                  "NÃºmero de intentos n:",
                                   min = 1,
                                   max = 40,
                                   step = 1,
@@ -156,7 +157,7 @@ ui <- dashboardPage(
         tabItem(tabName = "dgama",
                 
                 h2("Distribucion Gamma"),
-                p("la distribución gamma es una distribución con dos parámetros que pertenece a 
+                p("la distribuciÃ³n gamma es una distribuciÃ³n con dos parÃ¡metros que pertenece a 
                   las distribuciones de probabilidad continuas."),
                 
                 
@@ -164,12 +165,12 @@ ui <- dashboardPage(
         fluidRow(
           box(title = "Entradas", status = "warning", solidHeader = TRUE,
               sliderInput("p11",
-                          "Valor del parámetro K:",
+                          "Valor del parÃ¡metro K:",
                           min = 0,
                           max = 20,
                           value = 10),
               sliderInput("n11",
-                          "Valor del parámetro teta:",
+                          "Valor del parÃ¡metro teta:",
                           min = 0,
                           max = 10,
                           step = .5,
@@ -186,11 +187,11 @@ ui <- dashboardPage(
         #Distribucion de pareto
         tabItem(tabName = "dparet", solidHeader = FALSE,
                 
-                h2("Distribución de Pareto"),
+                h2("DistribuciÃ³n de Pareto"),
                 
-                p("Esta distribución surgió a finales del siglo XIX (Pareto, 1897) ante la preocupación
-                    de los economistas matemáticos de proporcionar modelos probabilísticos que ajusten
-                      correctamente la distribución de frecuencias de la renta personal.",align = "justify"),
+                p("Esta distribuciÃ³n surgiÃ³ a finales del siglo XIX (Pareto, 1897) ante la preocupaciÃ³n
+                    de los economistas matemÃ¡ticos de proporcionar modelos probabilÃ­sticos que ajusten
+                      correctamente la distribuciÃ³n de frecuencias de la renta personal.",align = "justify"),
                 
                 fluidRow(
                   box(title = "Entradas", status = "warning", solidHeader = TRUE,
@@ -227,25 +228,25 @@ ui <- dashboardPage(
         
         tabItem(tabName = "dfrech", status = "warning", solidHeader = TRUE,
                 
-                h2("Distribución de Fréchet"),
-                p("La distribución de Fréchet es un caso especial de la distribución de valores extremos generalizada.
-                  En la hidrología, se utiliza la distribución de Fréchet para analizar variables aleatorias como valores máximos de la precipitación y la descarga de ríos,
-                  y además para describir épocas de sequía."), 
+                h2("DistribuciÃ³n de FrÃ©chet"),
+                p("La distribuciÃ³n de FrÃ©chet es un caso especial de la distribuciÃ³n de valores extremos generalizada.
+                  En la hidrologÃ­a, se utiliza la distribuciÃ³n de FrÃ©chet para analizar variables aleatorias como valores mÃ¡ximos de la precipitaciÃ³n y la descarga de rÃ­os,
+                  y ademÃ¡s para describir Ã©pocas de sequÃ­a."), 
                 fluidRow(
                   box(title = "Entradas", status = "warning", solidHeader = TRUE,
                       sliderInput("p4",
-                                  "Valor de x mínimo:",
+                                  "Valor de x mÃ­nimo:",
                                   min = 0,
                                   max = 40,
                                   value = 1),
                       sliderInput("pmax",
-                                  "Valor de x máximo:",
+                                  "Valor de x mÃ¡ximo:",
                                   min = 0,
                                   max = 40,
                                   value = 1
                       ),
                       sliderInput("n4",
-                                  "Parámetro de localización m:",
+                                  "ParÃ¡metro de localizaciÃ³n m:",
                                   min = 1,
                                   max = 40,
                                   step = 1,
@@ -272,38 +273,29 @@ ui <- dashboardPage(
         
         tabItem(tabName = "vADiscEsp",
                 
-                h2("Esperanza de variables continuas"),
+                h2("Esperanza y Varianza de variables aleatorias continuas"),
                 fluidRow(
                   box(title = "Entradas", status = "warning", solidHeader = TRUE,
-                      textInput("funcn", "Ingresa tu funcion de probabilidad ", "x"),
+                      textInput("funcn", "Ingresa tu funcion de probabilidad ", "function(x) x*(3/2*(1-x^2))"),
                       textInput("inferior", "Ingresa el indice inferior", "0"),
                       textInput("superior", "Ingresa el indice superior", "1")
                   ),
                   box(
-                    title = "Salidas",status = "primary", solidHeader = TRUE,
-                    HTML("<strong>Esperanza:</strong>"),
+                    title = "Esperanza",status = "primary", solidHeader = TRUE,
+                    HTML("<strong>Resultado:</strong>"),
                     tags$div(style= "text-aling: center", textOutput("esperanza2"))
-                  )
-                ),
-                
-                h2("Varianza de variables continuas"),
-                fluidRow(
-                  box(title = "Entradas", status = "warning", solidHeader = TRUE,
-                      textInput("funcn", "Ingresa tu funcion de probabilidad ", "x"),
-                      textInput("inferior", "Ingresa el indice inferior", "0"),
-                      textInput("superior", "Ingresa el indice superior", "1")
                   ),
                   box(
-                    title = "Salidas",status = "primary", solidHeader = TRUE,
-                    HTML("<strong>Esperanza:</strong>"),
-                    tags$div(style= "text-aling: center", textOutput("esperanza2"))
+                    title = "Varianza",status = "primary", solidHeader = TRUE,
+                    HTML("<strong>Resultado:</strong>"),
+                    tags$div(style= "text-aling: center", textOutput("varianza2"))
                   )
                 ),
-                
+              
         ), 
         
         tabItem(tabName = "vAContEsp",
-                h2("Esperanza de variables aleatorias discretas"),
+                h2("Esperanza y Varianza de variables aleatorias discretas"),
                 fluidRow(
                   box(
                     title = "Entradas" , status = "warning", solidHeader = TRUE,
@@ -315,34 +307,74 @@ ui <- dashboardPage(
                       
                   ),
                   box(
-                    title = "Salidas",status = "primary", solidHeader = TRUE,
+                    title = "Esperanza",status = "primary", solidHeader = TRUE,
                     
-                    HTML("<strong>Esperanza:</strong>"),
+                    HTML("<strong>Resultado:</strong>"),
                     tags$div(style= "text-aling: center", textOutput("esperanz"))
+                  ),
+                  
+                  box(
+                    title = "Varianza",status = "primary", solidHeader = TRUE,
+                    HTML("<strong>Resultado:</strong>"),
+                    tags$div(style= "text-aling: center", textOutput("varianza"))
                   ),
         
                 ),
-                h2("Varianza de variables aleatorias discretas"),
+            ), #fin tabItem vaContEsp
+        
+            tabItem(tabName = "binomFge",
+                    h2("Funcion generadora"),
+                    fluidRow(
+                      box(
+                        title = "Entrada", status = "warning", solidHeader = TRUE,
+                        sliderInput("fg",
+                                    "Tamaño entre cada valor:",
+                                    min = 0,
+                                    max = 500,
+                                    step = 50,
+                                    value = 200)
+                        
+                      ), box(
+                        title = "Salidas",status = "primary", solidHeader = TRUE,
+                        plotOutput("fgeneradora")
+                      )
+                    )),
+          tabItem(tabName = "geomFge",
+                  h2("Funcion generadora"),
+                  fluidRow(
+                    box(
+                      title = "Entrada", status = "warning", solidHeader = TRUE,
+                      sliderInput("fg2",
+                                  "Tamaño entre cada valor:",
+                                  min = 0,
+                                  max = 500,
+                                  step = 50,
+                                  value = 50)
+                      
+                    ), box(
+                      title = "Salidas",status = "primary", solidHeader = TRUE,
+                      plotOutput("fgeneradora2")
+                    )
+                  )),
+        tabItem(tabName = "paretFg",
+                h2("Funcion generadora"),
                 fluidRow(
                   box(
-                    title = "Entradas" , status = "warning", solidHeader = TRUE,
+                    title = "Entrada", status = "warning", solidHeader = TRUE,
+                    sliderInput("fg3",
+                                "Tamaño entre cada valor:",
+                                min = 0,
+                                max = 500,
+                                step = 50,
+                                value = 50)
                     
-                    textInput("valores", "Valores en x: ", "-1, 0, 1, 2"),
-                    textInput("valoresdx", "Valores en f(x): ", ".125, .5, .125, .250")
-                    
-                    
-                    
-                  ),
-                  box(
+                  ), box(
                     title = "Salidas",status = "primary", solidHeader = TRUE,
-                    
-                    HTML("<strong>Varianza:</strong>"),
-                    tags$div(style= "text-aling: center", textOutput("varianza"))
-                  ),
-                  
+                    plotOutput("fgeneradora3")
+                  )
                 ))
-           )
-    )
+        ) #fin tabItems
+    )#Fin DashboardBody
 ) #Fin DashBoard
 
 
@@ -362,7 +394,7 @@ service <- function(input, output) {
       x    <- 0:input$n
       probs <- dgeom(x, prob = input$p)
       qplot(x, probs, geom = c("point", "line"), 
-            main = paste("Densidad de distribución Geometrica, n = ", as.character(input$n)),
+            main = paste("Densidad de distribuciÃ³n Geometrica, n = ", as.character(input$n)),
             ylab = "p(x)", ylim = c(0, 1))
     })
     
@@ -370,7 +402,7 @@ service <- function(input, output) {
       x <- 0:input$n1
       probs <- dnbinom(x, size = input$n1, prob = input$p1)
       qplot(x, probs, geom = c("point", "line"), 
-            main = paste("Densidad de distribución Binomial Negativa, n = ", as.character(input$n)),
+            main = paste("Densidad de distribuciÃ³n Binomial Negativa, n = ", as.character(input$n)),
             ylab = "p(x)", ylim = c(0, 1))
     })
     
@@ -379,7 +411,7 @@ service <- function(input, output) {
       x <- 0:input$p3
       probs <- dPareto(x, input$n3, input$a)
       qplot(x, probs, geom = c("point", "line"),
-            main = paste("Densidad de distribución de Pareto, n = ", as.character(input$n)),
+            main = paste("Densidad de distribuciÃ³n de Pareto, n = ", as.character(input$n)),
             ylab = "p(x)", ylim = c(1,0))
     })
     
@@ -388,7 +420,7 @@ service <- function(input, output) {
       x <- input$p4:input$pmax
       probs <- dfrechet(x, input$n4, input$p5, input$n5)
       qplot(x, probs, geom = c("point", "line"),
-            main = paste("Densidad de distribución de Fréchet"),
+            main = paste("Densidad de distribuciÃ³n de FrÃ©chet"),
             ylab = "p(x)", ylim = c(1,0))
       
       
@@ -398,7 +430,7 @@ service <- function(input, output) {
       x    <- 0:input$n10
       probs <- dbinom(x, size = input$n10, prob = input$p10)
       qplot(x, probs, geom = c("point", "line"), 
-            main = paste("Densidad de distribució binomial, n = ", as.character(input$n10)),
+            main = paste("Densidad de distribuciÃ³ binomial, n = ", as.character(input$n10)),
             ylab = "p(x)", ylim = c(0, 1)) + theme_bw()
     })
     
@@ -407,7 +439,7 @@ service <- function(input, output) {
       alph <- 1 / input$n11
       probs <- dgamma(x, input$p11, alph)
       qplot(x, probs, geom = c("point", "line"), 
-            main = paste("Densidad de distribución gamma, n = ", as.character(input$n11)),
+            main = paste("Densidad de distribuciÃ³n gamma, n = ", as.character(input$n11)),
             ylab = "p(x)", ylim = c(0, 1)) + theme_bw()
       
     })
@@ -424,15 +456,81 @@ service <- function(input, output) {
     })
     
     output$varianza <- renderText({
-      suma <- 2+2
-      paste(suma)
+      
+      x <- as.numeric(unlist(strsplit(input$valoresX,",")))
+      fx <- as.numeric(unlist(strsplit(input$valoresfx,",")))
+      
+      suma <- 0.00 #
+      for (i in 1: length (x)){  #Rcorremos el tamaño el la lista
+        med <- med + x[i]* fx[i] # en cada iteracion se realiza la operación correspondiente al indice y se suma al contador
+      }
+      
+      var <- 0.00 #Iniciamos una variable que almacenará la varianza
+      for (j in 1: length (x)){  #iteramos sobre el tamaño de la lista nuevamente
+        var <- var + (x[i]*med)^2 * fx[i] #sumamos el valor de la operacion de cada iteracion, se usa la media
+        }
+      
+      paste(var) #mandamos el valor de var 
     })
     
     output$esperanza2 <- renderPrint({
       
-      f <- function(x) input$funcn
+      f <- function(x) x*(3/2*(1-x^2))
       
       integrate(f, lower = 0, upper = 1)
+    })
+    
+    output$varianza2 <- renderPrint({
+      
+      f <- function(x) (x-2/3)^2 *(2*x)
+      
+      integrate(f, lower = 0, upper = 1)
+      
+    })
+    
+    output$fgeneradora <- renderPlot({
+      Lista <- c()
+      
+      for (i in seq(50, 50000, by=input$fg)) {
+        
+        x <- i
+        datos <- c(rbinom(x, 50000, 0.1))
+        media = median(datos)
+        
+        Lista <- c(Lista, media)
+      }
+      
+      plot(Lista, type = "l", main = "FunciÃ³n generadora de momentos")
+    })
+    
+    output$fgeneradora2 <- renderPlot({
+      Lista <- c()
+      
+      for (i in seq(50, 10000, by=input$fg2)) {
+        
+        x <- i
+        datos <- c(rgeom(x, 0.1))
+        media = median(datos)
+        
+        Lista <- c(Lista, media)
+      }
+      
+      plot(Lista, type = "l", main = "FunciÃ³n generadora de momentos")
+    })
+    
+    output$fgeneradora3 <- renderPlot({
+      Lista <- c()
+      
+      for (i in seq(50, 10000, by=input$fg3)) {
+        
+        x <- i
+        datos <- c(rPareto(x,10000, 0.1))
+        media = median(datos)
+        
+        Lista <- c(Lista, media)
+      }
+      
+      plot(Lista, type = "l", main = "FunciÃ³n generadora de momentos")
     })
     }
 
