@@ -460,13 +460,13 @@ service <- function(input, output) {
       x <- as.numeric(unlist(strsplit(input$valoresX,",")))
       fx <- as.numeric(unlist(strsplit(input$valoresfx,",")))
       
-      suma <- 0.00 #
-      for (i in 1: length (x)){  #Rcorremos el tamaño el la lista
+      med <- 0.00
+      for (i in 1: length(x)){  #Rcorremos el tamaño el la lista
         med <- med + x[i]* fx[i] # en cada iteracion se realiza la operación correspondiente al indice y se suma al contador
       }
       
       var <- 0.00 #Iniciamos una variable que almacenará la varianza
-      for (j in 1: length (x)){  #iteramos sobre el tamaño de la lista nuevamente
+      for (j in 1: length(x)){  #iteramos sobre el tamaño de la lista nuevamente
         var <- var + (x[i]*med)^2 * fx[i] #sumamos el valor de la operacion de cada iteracion, se usa la media
         }
       
@@ -480,7 +480,7 @@ service <- function(input, output) {
       integrate(f, lower = 0, upper = 1)
     })
     
-    output$varianza2 <- renderPrint({
+    output$varianza2 <- renderPrint({   
       
       f <- function(x) (x-2/3)^2 *(2*x)
       
@@ -492,11 +492,9 @@ service <- function(input, output) {
       Lista <- c()
       
       for (i in seq(50, 50000, by=input$fg)) {
-        
         x <- i
         datos <- c(rbinom(x, 50000, 0.1))
         media = median(datos)
-        
         Lista <- c(Lista, media)
       }
       
@@ -507,11 +505,9 @@ service <- function(input, output) {
       Lista <- c()
       
       for (i in seq(50, 10000, by=input$fg2)) {
-        
         x <- i
         datos <- c(rgeom(x, 0.1))
         media = median(datos)
-        
         Lista <- c(Lista, media)
       }
       
@@ -522,11 +518,9 @@ service <- function(input, output) {
       Lista <- c()
       
       for (i in seq(50, 10000, by=input$fg3)) {
-        
         x <- i
         datos <- c(rPareto(x,10000, 0.1))
         media = median(datos)
-        
         Lista <- c(Lista, media)
       }
       
